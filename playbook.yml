@@ -1,4 +1,27 @@
 - hosts: all
-  roles:
-    - role: geerlingguy.pip
-    - role: geerlingguy.docker
+  tasks:
+    - name: install pip
+      import_role:
+        name: geerlingguy.pip
+      become: yes
+      tags: pip
+
+    - name: install docker
+      import_role:
+        name: geerlingguy.docker
+      become: yes
+      tags: docker
+    
+    - name: create env file
+      ansible.builtin.template:
+        src: templates/.env.j2
+        dest: /.env
+    
+    - community.docker.docker_container:
+        name: redmine
+        image: redmine
+        restart_policy: always
+        state: started
+        ports:
+          - 3000:3000
+        
