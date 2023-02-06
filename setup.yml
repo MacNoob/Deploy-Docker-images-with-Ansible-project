@@ -1,0 +1,14 @@
+- hosts: all
+  tasks:
+
+    - name: install pip
+      import_role:
+        name: geerlingguy.pip
+      become: yes
+      tags: pip
+
+    - name: install docker
+      import_role:
+        name: geerlingguy.docker
+      become: yes
+      tags: docker
