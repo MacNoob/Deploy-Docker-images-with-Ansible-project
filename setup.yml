@@ -1,4 +1,6 @@
-- hosts: all
+---
+- name: Setup
+  hosts: webservers
   tasks:
 
     - name: install pip
@@ -12,3 +14,12 @@
         name: geerlingguy.docker
       become: yes
       tags: docker
+
+    - name: install datadog
+      import_role:
+        name: datadog.datadog
+      vars:
+        datadog_api_key: "{{ dd_api_key }}"
+        datadog_site: "{{ dd_site }}"
+      become: yes
+      tags: datadog
