@@ -1,12 +1,12 @@
-- hosts: webservers
+---
+- name: Deploy image
+  hosts: webservers
   tasks:
- 
-    - name: create env file
+    - name: Create env file
       ansible.builtin.template:
         src: templates/env.j2
         dest: /.env
         mode: '0644'
-      
     - name: Start redmine docker image
       community.docker.docker_container:
         name: redmine
