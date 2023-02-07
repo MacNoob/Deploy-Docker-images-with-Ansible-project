@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: webservers
   tasks:
  
     - name: create env file
@@ -15,4 +15,3 @@
         state: started
         ports:
           - 3000:3000
-        
