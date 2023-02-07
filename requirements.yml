@@ -5,3 +5,5 @@ roles:
     version: 5.1.0
   - name: datadog.datadog
     version: 4.16.0
+collections:
+  - name: comunity.docker

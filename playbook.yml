@@ -6,8 +6,9 @@
         src: templates/env.j2
         dest: /.env
         mode: '0644'
-    
-    - community.docker.docker_container:
+      
+    - name: Start redmine docker image
+      community.docker.docker_container:
         name: redmine
         image: redmine
         env_file: /.env
